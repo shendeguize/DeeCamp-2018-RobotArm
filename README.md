@@ -1,6 +1,6 @@
 # DeeCamp-2018-RobotArm
-This is for DeeCamp-2018-RobotArm Project.
-## Groups
-### Plz read the [README](https://github.com/shendeguize/DeeCamp-2018-RobotArm/tree/master/Groups/README.md) to know the basic things about using your group directory.
-## Resources
-### 1.[Virtual uArm](https://github.com/shendeguize/DeeCamp-2018-RobotArm/tree/master/Resources/Virtual-uArm)
+工场团队会把一部分代码push到Group0里
+
+请1组同学把代码push到Group1里，2组同学push到Group2里
+
+大家形成共识后，可以把一些代码共享，push到Common里
