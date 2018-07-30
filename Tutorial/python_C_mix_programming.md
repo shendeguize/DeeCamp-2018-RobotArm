@@ -123,10 +123,10 @@ int main()
 unsigned char *m_imgRGB;
 extern "C" 
 {
-	Init()
-	{
+    void Init()
+    {
         m_imgRGB = new unsigned char[640*480*3];
-	}
+    }
     void GetRGBOnce(unsigned char* imgRGB)
     {
         for (int j = 0; j < 480; j++)
@@ -137,11 +137,11 @@ extern "C"
             	{
                 	if (i < 320)
                 	{
-                        m_imgRGB[3*(j*640 + i) + k] = 255;
+                        imgRGB[3*(j*640 + i) + k] = 255;
                 	}
                 	else
                 	{
-                        m_imgRGB[3*(j*640 + i) + k] = 0;
+                        imgRGB[3*(j*640 + i) + k] = 0;
                 	}
                 }
             }
