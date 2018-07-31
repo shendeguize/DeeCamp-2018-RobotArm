@@ -15,3 +15,16 @@
 1.0 --> pyuf
 
 2.0 --> uArm-Python-SDK
+
+openCV3.0
+
+## Download and run:
+mkdir build && cd build
+
+Cmake..
+
+make
+
+cd ..
+
+sudo python3 pressure_test_move.py
