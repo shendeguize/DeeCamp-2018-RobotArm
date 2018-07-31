@@ -6,3 +6,10 @@
 ## You Cannot:
 1. Edit any source files in ../Resource/ directory (if you have any fantastic ideas, plz post the ideas or needs as above)
 2. Almost nothing else you cannot do :p.
+
+
+# How to run this code:
+## prerequisites:
+0.0 --> pyuarm
+1.0 --> pyuf
+2.0 --> uArm-Python-SDK
