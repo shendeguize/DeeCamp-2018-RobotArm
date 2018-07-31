@@ -11,5 +11,7 @@
 # How to run this code:
 ## prerequisites:
 0.0 --> pyuarm
+
 1.0 --> pyuf
+
 2.0 --> uArm-Python-SDK
