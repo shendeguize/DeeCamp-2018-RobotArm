@@ -13,7 +13,7 @@ if __name__ == "__main__":
     config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
     pipeline.start(config)
 
-    net = Detector(bytes("YOLO3-4-Py/cfg/yolov3.cfg", encoding="utf-8"), bytes("YOLO3-4-Py/weights/yolov3.weights", encoding="utf-8"), 0,
+    net = Detector(bytes("YOLO3-4-Py/cfg/yolov3-tiny.cfg", encoding="utf-8"), bytes("YOLO3-4-Py/weights/yolov3-tiny.weights", encoding="utf-8"), 0,
                    bytes("YOLO3-4-Py/cfg/coco.data", encoding="utf-8"))
 
     ###cap = cv2.VideoCapture(0)
