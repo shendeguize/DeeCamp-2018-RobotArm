@@ -27,29 +27,17 @@ using namespace pcl;
 using namespace std;
 
 typedef PointXYZRGB PointT;
-Mat bgr_window;
 
 const double g_camera_factor = 1000;
 const double g_camera_cx = 329.2113;
 const double g_camera_cy = 229.1156;
 const double g_camera_fx = 615.7779;
 const double g_camera_fy = 616.0148;
-string objects(string frame_data);
+string objects(string frame_data, rs2::pipeline& pipe, visualization::PCLVisualizer& viewer);
 void process(Mat& bgr_process);
 void on_MouseHandle(int event, int x, int y, int flags, void* param);
 
 int main()
-{
-    while(true)
-    {
-        string frame_data;
-        frame_data = objects(frame_data);
-        cout << "ThisFrame:" << frame_data << endl;
-    }
-    return 0;
-}
-
-string objects(string frame_data)
 {
     // Declare depth colorizer for pretty visualization of depth data
     rs2::colorizer color_map;
@@ -58,18 +46,28 @@ string objects(string frame_data)
     cfg.enable_stream(RS2_STREAM_COLOR, WIDTH, HEIGHT, RS2_FORMAT_BGR8, FPS);
     cfg.enable_stream(RS2_STREAM_DEPTH, WIDTH, HEIGHT, RS2_FORMAT_Z16, FPS);
     pipe.start(cfg);
-    for(int a=0; a<10; a++) pipe.wait_for_frames(); // Wait for next set of frames from the camera
 
     // Mouse event
     //namedWindow("record_point_window", WINDOW_NORMAL);
     setMouseCallback("record_point_window",on_MouseHandle);
 
     // PCL viewer
-    pcl::visualization::PCLVisualizer viewer("Cloud viewer");
+    visualization::PCLVisualizer viewer("Cloud viewer");
     viewer.setCameraPosition(0,0,-3.0,0,-1,0);
     viewer.addCoordinateSystem(0.3);
 
-    for(int a=0; a<9999999999; a++)
+    while(true)
+    {
+        string objects_data;
+        objects_data = objects(objects_data, pipe, viewer);
+        cout << objects_data << "\n" << endl;
+    }
+    return 0;
+}
+
+string objects(string objects_data, rs2::pipeline& pipe, visualization::PCLVisualizer& viewer)
+{
+    for(int a=0; a<1; a++)
     {
         rs2::frameset data = pipe.wait_for_frames(); // Wait for next set of frames from the camera
         rs2::frame depth_raw = data.get_depth_frame();
@@ -88,7 +86,6 @@ string objects(string frame_data)
         Rect rect_color(WIDTH/32+WIDTH/8, 0+HEIGHT/8, WIDTH-WIDTH/32-WIDTH/8, HEIGHT-HEIGHT/25-HEIGHT/8);
         bgr = bgr(rect_color);
         depth = depth(rect_depth);
-        bgr_window = bgr.clone();
 
         PointCloud<PointT>::Ptr cloud(new PointCloud<PointT>);
         for(int m=0; m<depth.rows; m++)
@@ -234,9 +231,9 @@ string objects(string frame_data)
             double x = (n - g_camera_cx) * z / g_camera_fx;
             double y = (m - g_camera_cy) * z / g_camera_fy;
             ostringstream out;
-            printf("(%f, %f, %f)\n", x, y, z);
+            //printf("(%f, %f, %f)\n", x, y, z);
             out<<"("<<x<<","<<y<<","<<z<<")";
-            frame_data+=out.str();
+            objects_data+=out.str();
             num_objects++;
         }
         printf("num_objects:%d\n", num_objects);
@@ -261,7 +258,7 @@ string objects(string frame_data)
         waitKey(1);
     }
 
-    return frame_data;
+    return objects_data;
 }
 
 inline void process(Mat& bgr_process)
@@ -315,12 +312,10 @@ void on_MouseHandle(int event, int x, int y, int flags, void* param)
         {
             pt = Point(x, y);
             cout << "  " << pt.x << " " << pt.y << endl;
-            circle(bgr_window, pt, 10, Scalar(0, 0, 255), -1);
             int m = x, n = y;
             double x = (n - g_camera_cx) * 0.56 / g_camera_fx;
             double y = (m - g_camera_cy) * 0.56 / g_camera_fy;
             printf("%f, %f\n", x, y);
-            imshow("record_point_window", bgr_window);
         }
         break;
     }
