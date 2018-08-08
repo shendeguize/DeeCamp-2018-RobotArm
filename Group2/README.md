@@ -1,6 +1,6 @@
 # This is for groups:
 ## You Can：
-1. Record all your source code here(save into ./yourteamname/)
+1. Record all your source code here(save into ./yourteamname/)linzhen
 2. Post your ideas, needs, presentations or whatever you want here(edit ./yourteamname/ideas.md or./yourteamname/needs.md or so)
 
 ## You Cannot:
