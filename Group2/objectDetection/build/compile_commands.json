@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/yee/Documents/DeeCamp-2018-RobotArm/Group2/objectDetection/build",
+  "command": "/usr/bin/c++    -isystem /usr/local/include -isystem /usr/local/include/opencv   -g -std=c++11   -o CMakeFiles/objectDetection.out.dir/source/objectDetection.cpp.o -c /home/yee/Documents/DeeCamp-2018-RobotArm/Group2/objectDetection/source/objectDetection.cpp",
+  "file": "/home/yee/Documents/DeeCamp-2018-RobotArm/Group2/objectDetection/source/objectDetection.cpp"
+}
+]
