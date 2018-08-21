@@ -17,15 +17,15 @@
 
 #define KERNEL_SIZE                   3
 
-#define BLUE_CUBE_THRESH             83 // 80 - 83
+#define BLUE_CUBE_THRESH             80 // 80 - 83
 #define PINK_CYLI_THRESH             25 // 35 - 40 
-#define YELLOW_CUBE_THRESH           60 // 50 - 60
+#define YELLOW_CUBE_THRESH           55 // 50 - 60
 #define GREEN_CUBE_THRESH            60 // 65 - 70
 
 #define CONTOUR_AREA_MIN            700
 #define CONTOUR_AREA_MAX           2500
 #define BOUND_BOX_SIZE_MIN           15
-#define BOUND_BOX_SIZE_MAX           90
+#define BOUND_BOX_SIZE_MAX           80
 #define ENCLOSE_RADIUS_MIN           15
 #define ENCLOSE_RADIUS_MAX           30
 
